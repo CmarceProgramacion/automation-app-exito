@@ -16,10 +16,12 @@ public class BuyProductExitoPage extends PageObject {
     public static final Target CITY_DROP_DOWN_LIST2= Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/filled_exposed_dropdown_city"));
     public static final Target CITY_DROP_DOWN_LIST3= Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/filled_exposed_dropdown_store"));
     public static final Target STORE_DROP_DOWN_LIST= Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/filled_exposed_dropdown_store"));
-    public static final Target STORE_DROP_DOWN_LIST2= Target.the("Drop-down list of cities").located(By.id("(//android.widget.ImageButton[@content-desc='Show dropdown menu'])[2]" +
-            "\n"));
+    public static final Target LABEL_PRODUCT_NAME =Target.the("Drop-down list of cities").locatedBy("//android.widget.TextView[@text='{0}']");
     public static final Target BUTTON_CONTINUE= Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/appCompatButton_continue"));
-    public static final Target BUTTON_OUTSIDE= Target.the("Drop-down list of cities").located(By.id("om.exito.appcompania:id/touch_outside"));
+    public static final Target BUTTON_ADD = Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/buy_now_button"));
+    public static final Target ICON_SHOPPING_CART = Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/appCompatImageView_shopping_cart"));
+    public static final Target TOUCH_OUTSIDE = Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/touch_outside"));
+    public static final Target ADDRESS_BTN = Target.the("Drop-down list of cities").located(By.id("com.exito.appcompania:id/appCompaTextView_address"));
 
 
 

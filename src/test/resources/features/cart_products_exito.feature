@@ -31,5 +31,5 @@ Feature: Validate shopping cart
     Then Verification of the items in my shopping cart
 
     Examples:
-      | productCategory | productName         | country | store                  |
-      | Televisores     | Televisores smar tv | Pereira | Exito Pereira Victoria |
+      | productCategory | productName                                           | country | store                  |
+      | Televisores     | Televisor HISENSE 43 Pulgadas LED Fhd Smart TV 43A4HV | Pereira | Exito Pereira Victoria |
