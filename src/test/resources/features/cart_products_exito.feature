@@ -29,6 +29,7 @@ Feature: Validate shopping cart
     When I select items to purchase
       | <productCategory> | <productName> | <country> | <store> |
     Then Verification of the items in my shopping cart
+      | <productName> |
 
     Examples:
       | productCategory | productName                                           | country | store                  |

@@ -1,11 +1,13 @@
 package com.exito.stepdefinitions;
 
+import com.exito.questions.VerifyProductNames;
 import com.exito.tasks.BuyProductExitoTask;
 import com.exito.tasks.LoginTask;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -42,6 +44,9 @@ public class CartProductsExitoStepDefinitions {
     }
 
     @Then("Verification of the items in my shopping cart")
-    public void verificationOfTheItemsInMyShoppingCart() {
+    public void verificationOfTheItemsInMyShoppingCart(List<List<String>> dataArticle) {
+        theActorInTheSpotlight().should(
+                GivenWhenThen.seeThat(VerifyProductNames.verify(dataArticle.get(0).get(0)))
+        );
     }
 }

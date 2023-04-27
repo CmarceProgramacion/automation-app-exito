@@ -8,6 +8,7 @@ import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static com.exito.userinterfaces.BuyProductExitoPage.*;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class BuyProductExitoTask implements Task {
@@ -32,7 +33,7 @@ public class BuyProductExitoTask implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Click.on(LOCATION_POP_UP),
-                 Check.whether(theVideoIsVisible()).andIfSo(Click.on(ICON_VIDEO)),
+                Check.whether(theVideoIsVisible()).andIfSo(Click.on(ICON_VIDEO)),
                 Click.on(ADDRESS_BTN),
                 WaitUntil.the(RECEIVE_ORDER_POP_UP, isVisible()).forNoMoreThan(5).seconds(),
                 Click.on(RECEIVE_ORDER_POP_UP),
@@ -46,7 +47,7 @@ public class BuyProductExitoTask implements Task {
         );
 
         actor.attemptsTo(
-                //   Click.on(BUTTON_CONTINUE),
+                //Click.on(BUTTON_CONTINUE),
                 Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(TOUCH_OUTSIDE)),
                 Click.on(INPUT_PRODUCT_SEARCH),
                 Enter.theValue(productCategory).into(INPUT_PRODUCT_SEARCH_TWO),
@@ -55,10 +56,21 @@ public class BuyProductExitoTask implements Task {
 
 
         actor.attemptsTo(
-                Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(BUTTON_CONTINUE)).otherwise(Click.on(LABEL_PRODUCT_NAME.of(store))),
-                Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(BUTTON_CONTINUE)).otherwise(Click.on(BUTTON_ADD)),
-                Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(BUTTON_CONTINUE)).otherwise(Click.on(ICON_SHOPPING_CART))
+                Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(BUTTON_CONTINUE)).otherwise(Click.on(LABEL_PRODUCT_NAME.of(productName)),
+                Click.on(BUTTON_ADD_SHOPPING_CART),
+                Click.on(ICON_SHOPPING_CART))
         );
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        actor.attemptsTo(
+                WaitUntil.the(PRODUCT_NAME_LBL.of(productName), isCurrentlyVisible()).forNoMoreThan(10).seconds()
+        );
+
 
     }
 
