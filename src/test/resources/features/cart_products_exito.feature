@@ -10,6 +10,7 @@ Feature: Validate shopping cart
 
   Background: Access to the main platform
     Given that I access the app of the Exito
+      | julioprueba@yopmail.com | Julioprueba123- |
 
 
   @CaseRegister
@@ -25,10 +26,11 @@ Feature: Validate shopping cart
 
   @CaseShoppingCart
   Scenario Outline: Validate the registration in the app
-    When I log in and select items to purchase
-      | <email> | <password> | <productCategory> | <productName> |
+    When I select items to purchase
+      | <productCategory> | <productName> | <country> | <store> |
     Then Verification of the items in my shopping cart
+      | <productName> |
 
     Examples:
-      | email                   | password        | productCategory | productName                                        |
-      | julioprueba@yopmail.com | Julioprueba123- | Televisores     | Televisor HYUNDAI 50 Pulgadas QLED Uhd-4K Smart TV |
+      | productCategory | productName                                           | country | store                  |
+      | Televisores     | Televisor HISENSE 43 Pulgadas LED Fhd Smart TV 43A4HV | Pereira | Exito Pereira Victoria |
