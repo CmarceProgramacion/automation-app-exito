@@ -26,9 +26,9 @@ public class LoginTask implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Click.on(LOGIN_BUTTON),
+                Click.on(LOGIN_BTN),
                 Enter.theValue(email).into(INPUT_EMAIL),
                 Enter.theValue(password).into(INPUT_PASSWORD),
-                Click.on(ENTER_BUTTON));
+                Click.on(ENTER_BTN));
     }
 }

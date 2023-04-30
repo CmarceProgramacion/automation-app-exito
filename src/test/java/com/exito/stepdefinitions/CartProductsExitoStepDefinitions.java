@@ -1,5 +1,6 @@
 package com.exito.stepdefinitions;
 
+import com.exito.models.ProductModel;
 import com.exito.questions.VerifyProductNames;
 import com.exito.tasks.BuyProductExitoTask;
 import com.exito.tasks.LoginTask;
@@ -29,18 +30,16 @@ public class CartProductsExitoStepDefinitions {
         OnStage.theActor("Exito");
     }
 
-
     @Given("that I access the app of the Exito")
     public void thatIAccessTheAppOfTheExito(List<List<String>> dataArticle) {
         theActorInTheSpotlight().can(BrowseTheWeb.with(hisMobileDevice));
         theActorInTheSpotlight().attemptsTo(LoginTask.withTheData(dataArticle.get(0).get(0), dataArticle.get(0).get(1)));
-
     }
 
     @When("I select items to purchase")
     public void iLogInAndSelectItemsToPurchase(List<List<String>> dataArticle) {
-
-        theActorInTheSpotlight().attemptsTo(BuyProductExitoTask.withTheData(dataArticle.get(0).get(0),dataArticle.get(0).get(1), dataArticle.get(0).get(2), dataArticle.get(0).get(3)));
+        ProductModel product = new ProductModel(dataArticle.get(0));
+        theActorInTheSpotlight().attemptsTo(BuyProductExitoTask.withTheData(product));
     }
 
     @Then("Verification of the items in my shopping cart")
