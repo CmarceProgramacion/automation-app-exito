@@ -2,7 +2,7 @@
 
 #### Descripción
 
-Proyecto de Automatización de la plataforma Exito con JAVA, Serenity BDD y Gradle
+Proyecto de Automatización de pruebas web de la plataforma Exito con JAVA, Serenity BDD y Gradle.
 
 #### Feature: Validate shopping cart
 
@@ -16,11 +16,11 @@ Proyecto de Automatización de la plataforma Exito con JAVA, Serenity BDD y Grad
 
 #### Características del Proyecto
 
-En la construcción del proyecto de automatizacion APP en la plataforma Exito se implementa:
+En la construcción del proyecto de automatizacion en la plataforma Exito se implementa:
 
 - Patrón de diseño de Screemplay.
 - Framework SerenityBDD.
-- Gestor de paquetes Gradle.
+- Gestor de paquetes Gradle 7.
 - Desarrollado en java en su versión 11
 
 #### Versionado
@@ -37,14 +37,20 @@ En la construcción del proyecto de automatizacion APP en la plataforma Exito se
 #### Precondiciones
 
 - [x] 1: Instar Java en su versión 11.
-- [x] 1.1: Configurar variable de entorno JAVA_HOME
-- [x] 2: Instar Gradle en su versión 7.X
-- [x] 2.1: Configurar variable de entorno GRADLE_HOME-
+- [x] 1.1: Configurar variable de entorno JAVA_HOME.
+- [x] 2: Instar Gradle en su versión 7.X.
+- [x] 2.1: Configurar variable de entorno GRADLE_HOME.
 
 #### Ejecución del proyecto
 
-Para la ejecución del proyecto se debe implementar el siguiente comando en el terminal en el directorio raíz del
+Para la ejecución del proyecto se debe implementar el siguiente comando en el terminal del directorio raíz del
 proyecto:
+
+- si no tienes Gradle o una version menor que la 7.x.x, ejecuta el siguiente comando:
+
+```sh
+./gradlew clean test 
+```
 
 - si tienes gradle instalado y configurado puedes ejecutar el siguiente comando:
 
@@ -52,8 +58,3 @@ proyecto:
 gradle clean test 
 ```
 
-- si no tienes gradle o la version correspondiente ejecuta el siguiente comando:
-
-```sh
-./gradlew clean test 
-```

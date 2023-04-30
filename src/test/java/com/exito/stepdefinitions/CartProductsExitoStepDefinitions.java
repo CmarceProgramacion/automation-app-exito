@@ -27,23 +27,22 @@ public class CartProductsExitoStepDefinitions {
     @Before
     public void before() {
         OnStage.setTheStage(new OnlineCast());
-        OnStage.theActor("Exito");
+        OnStage.theActor("Pepito");
     }
 
     @Given("that I access the app of the Exito")
-    public void thatIAccessTheAppOfTheExito(List<List<String>> dataArticle) {
+    public void thatIAccessTheAppOfTheExito(List<List<String>> dataUser) {
         theActorInTheSpotlight().can(BrowseTheWeb.with(hisMobileDevice));
-        theActorInTheSpotlight().attemptsTo(LoginTask.withTheData(dataArticle.get(0).get(0), dataArticle.get(0).get(1)));
+        theActorInTheSpotlight().attemptsTo(LoginTask.withTheData(dataUser.get(0).get(0), dataUser.get(0).get(1)));
     }
 
-    @When("I select items to purchase")
-    public void iLogInAndSelectItemsToPurchase(List<List<String>> dataArticle) {
-        ProductModel product = new ProductModel(dataArticle.get(0));
-        theActorInTheSpotlight().attemptsTo(BuyProductExitoTask.withTheData(product));
+    @When("I add product to cart")
+    public void iAddProductToCart(List<List<String>> productData) {
+        theActorInTheSpotlight().attemptsTo(BuyProductExitoTask.withTheData(new ProductModel(productData.get(0))));
     }
 
-    @Then("Verification of the items in my shopping cart")
-    public void verificationOfTheItemsInMyShoppingCart(List<List<String>> dataArticle) {
+    @Then("I verify the item in my shopping cart")
+    public void iVerifyTheItemInMyShoppingCart(List<List<String>> dataArticle) {
         theActorInTheSpotlight().should(
                 GivenWhenThen.seeThat(VerifyProductNames.verify(dataArticle.get(0).get(0)))
         );

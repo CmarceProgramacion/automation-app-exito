@@ -40,7 +40,6 @@ dependencies {
     implementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: "${serenityCucumberVersion}"
     implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: "${serenityVersion}"
     implementation group: 'net.serenity-bdd', name: 'serenity-screenplay-webdriver', version: "${serenityVersion}"
-    implementation group: 'net.serenity-bdd', name: 'serenity-ensure', version: "${serenityEnsureVersion}"
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: "${slf4jSimpleVersion}"
     implementation group: 'io.appium', name: 'java-client', version: "${appium}"
     testImplementation group: 'junit', name: 'junit', version: "${junitVersion}"

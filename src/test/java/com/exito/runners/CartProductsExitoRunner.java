@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/cart_products_exito.feature",
         glue = "com.exito.stepdefinitions",
-        tags = "@CaseShoppingCart",
+        tags = "@AddProductToCart",
         plugin = {"pretty"},
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )

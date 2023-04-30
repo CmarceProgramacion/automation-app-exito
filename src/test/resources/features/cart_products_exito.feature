@@ -13,8 +13,8 @@ Feature: Validate shopping cart
       | julioprueba@yopmail.com | Julioprueba123- |
 
 
-  @CaseRegister
-  Scenario Outline: Validate the registration in the app
+  @Register
+  Scenario Outline: Validate the registration on the app
     When I register in the app
       | <names> | <lastNames> | <documentType> | <yearBirth> | <monthBirth> | <dayBirth> | <cellPhoneNumber> | <email> |
     Then verify that the registration is successful in the app
@@ -24,11 +24,11 @@ Feature: Validate shopping cart
       | Pepito Exito | Diaz      | CC           | 1999      | 06         | 01       | 310000000       | PepitoExito@yopmail.com |
 
 
-  @CaseShoppingCart
-  Scenario Outline: Validate the registration in the app
-    When I select items to purchase
+  @AddProductToCart
+  Scenario Outline: Validate the product in the shopping cart on the app
+    When I add product to cart
       | <productCategory> | <productName> | <country> | <store> |
-    Then Verification of the items in my shopping cart
+    Then I verify the item in my shopping cart
       | <productName> |
 
     Examples:

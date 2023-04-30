@@ -3,7 +3,7 @@ package com.exito.questions;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 
-import static com.exito.userinterfaces.BuyProductExitoPage.PRODUCT_NAME_LBL;
+import static com.exito.userinterfaces.BuyProductExitoPage.PRODUCT_NAME_CART_LABEL;
 
 public class VerifyProductNames implements Question<Boolean> {
     private String name;
@@ -18,6 +18,6 @@ public class VerifyProductNames implements Question<Boolean> {
 
     @Override
     public Boolean answeredBy(Actor actor) {
-        return PRODUCT_NAME_LBL.of(name).isVisibleFor(actor);
+        return PRODUCT_NAME_CART_LABEL.of(name).isVisibleFor(actor);
     }
 }
