@@ -2,10 +2,8 @@ package com.exito.questions;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
-import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static com.exito.userinterfaces.BuyProductExitoPage.*;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
+import static com.exito.userinterfaces.BuyProductExitoPage.PRODUCT_NAME_CART_LABEL;
 
 public class VerifyProductNames implements Question<Boolean> {
     private String name;
@@ -18,9 +16,8 @@ public class VerifyProductNames implements Question<Boolean> {
         return new VerifyProductNames(name);
     }
 
-
     @Override
     public Boolean answeredBy(Actor actor) {
-        return PRODUCT_NAME_LBL.of(name).isVisibleFor(actor);
+        return PRODUCT_NAME_CART_LABEL.of(name).isVisibleFor(actor);
     }
 }

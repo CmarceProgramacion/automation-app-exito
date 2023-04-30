@@ -1,5 +1,7 @@
 package com.exito.tasks;
 
+import com.exito.interactions.WaitImplicitAction;
+import com.exito.models.ProductModel;
 import net.serenitybdd.screenplay.*;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
@@ -18,67 +20,58 @@ public class BuyProductExitoTask implements Task {
     private String country;
     private String store;
 
-    public BuyProductExitoTask(String productCategory, String productName, String country, String store) {
-        this.productCategory = productCategory;
-        this.productName = productName;
-        this.country = country;
-        this.store = store;
+    public BuyProductExitoTask(ProductModel productModel) {
+        this.productCategory = productModel.getProductCategory();
+        this.productName = productModel.getProductName();
+        this.country = productModel.getCountry();
+        this.store = productModel.getStore();
     }
 
-    public static Performable withTheData(String productCategory, String productName, String country, String store) {
-        return Tasks.instrumented(BuyProductExitoTask.class, productCategory, productName, country, store);
+    public static Performable withTheData(ProductModel productModel) {
+        return Tasks.instrumented(BuyProductExitoTask.class, productModel);
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Click.on(LOCATION_POP_UP),
-                Check.whether(theVideoIsVisible()).andIfSo(Click.on(ICON_VIDEO)),
-                Click.on(ADDRESS_BTN),
+                Check.whether(theVideoIsVisible()).andIfSo(Click.on(CLOSE_VIDEO_ICON)),
+                Click.on(ADDRESS_BUTTON),
                 WaitUntil.the(RECEIVE_ORDER_POP_UP, isVisible()).forNoMoreThan(5).seconds(),
                 Click.on(RECEIVE_ORDER_POP_UP),
-                Click.on(CITY_DROP_DOWN_LIST1),
-                SendKeys.of(country).into(CITY_DROP_DOWN_LIST2),
+                Click.on(CITY_DROP_DOWN_LIST),
+                SendKeys.of(country).into(CITY_DROP_DOWN_LIST_TWO),
                 Click.on(STORE_DROP_DOWN_LIST),
                 Click.on(STORE_DROP_DOWN_LIST),
                 SendKeys.of(store).into(STORE_DROP_DOWN_LIST),
-                Click.on(BUTTON_CONTINUE),
-                Click.on(BUTTON_CONTINUE)
+                Click.on(CONTINUE_BUTTON),
+                Click.on(CONTINUE_BUTTON)
         );
 
         actor.attemptsTo(
-                //Click.on(BUTTON_CONTINUE),
                 Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(TOUCH_OUTSIDE)),
-                Click.on(INPUT_PRODUCT_SEARCH),
-                Enter.theValue(productCategory).into(INPUT_PRODUCT_SEARCH_TWO),
-                Click.on(ICON_SEARCH)
+                Click.on(PRODUCT_SEARCH_INPUT),
+                Enter.theValue(productCategory).into(PRODUCT_SEARCH_TWO_INPUT),
+                Click.on(SEARCH_ICON)
         );
-
 
         actor.attemptsTo(
-                Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(BUTTON_CONTINUE)).otherwise(Click.on(LABEL_PRODUCT_NAME.of(productName)),
-                Click.on(BUTTON_ADD_SHOPPING_CART),
-                Click.on(ICON_SHOPPING_CART))
+                Check.whether(theButtonLocationIsVisible()).andIfSo(Click.on(CONTINUE_BUTTON)).otherwise(Click.on(PRODUCT_NAME_LABEL.of(productName)),
+                        Click.on(ADD_SHOPPING_CART_BUTTON),
+                        Click.on(SHOPPING_CART_ICON))
         );
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         actor.attemptsTo(
-                WaitUntil.the(PRODUCT_NAME_LBL.of(productName), isCurrentlyVisible()).forNoMoreThan(10).seconds()
+                WaitImplicitAction.inSeconds(10),
+                WaitUntil.the(PRODUCT_NAME_CART_LABEL.of(productName), isCurrentlyVisible()).forNoMoreThan(10).seconds()
         );
-
-
     }
 
     private Question<Boolean> theButtonLocationIsVisible() {
-        return actor -> BUTTON_CONTINUE.resolveFor(actor).isCurrentlyVisible();
+        return actor -> CONTINUE_BUTTON.resolveFor(actor).isCurrentlyVisible();
     }
 
     private Question<Boolean> theVideoIsVisible() {
-        return actor -> ICON_VIDEO.resolveFor(actor).isCurrentlyVisible();
+        return actor -> CLOSE_VIDEO_ICON.resolveFor(actor).isCurrentlyVisible();
     }
 }

@@ -27,8 +27,8 @@ public class LoginTask implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Click.on(LOGIN_BUTTON),
-                Enter.theValue(email).into(INPUT_EMAIL),
-                Enter.theValue(password).into(INPUT_PASSWORD),
+                Enter.theValue(email).into(EMAIL_INPUT),
+                Enter.theValue(password).into(PASSWORD_INPUT),
                 Click.on(ENTER_BUTTON));
     }
 }
